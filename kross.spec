@@ -5,22 +5,22 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kross
-Version  : 5.50.0
-Release  : 2
-URL      : https://download.kde.org/stable/frameworks/5.50/portingAids/kross-5.50.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.50/portingAids/kross-5.50.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.50/portingAids/kross-5.50.0.tar.xz.sig
+Version  : 5.51.0
+Release  : 3
+URL      : https://download.kde.org/stable/frameworks/5.51/portingAids/kross-5.51.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.51/portingAids/kross-5.51.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.51/portingAids/kross-5.51.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: kross-bin
-Requires: kross-lib
-Requires: kross-license
-Requires: kross-locales
-Requires: kross-man
+Requires: kross-bin = %{version}-%{release}
+Requires: kross-lib = %{version}-%{release}
+Requires: kross-license = %{version}-%{release}
+Requires: kross-locales = %{version}-%{release}
+Requires: kross-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 # Kross
@@ -32,8 +32,8 @@ into an application. It supports QtScript as a scripting interpreter backend.
 %package bin
 Summary: bin components for the kross package.
 Group: Binaries
-Requires: kross-license
-Requires: kross-man
+Requires: kross-license = %{version}-%{release}
+Requires: kross-man = %{version}-%{release}
 
 %description bin
 bin components for the kross package.
@@ -42,9 +42,9 @@ bin components for the kross package.
 %package dev
 Summary: dev components for the kross package.
 Group: Development
-Requires: kross-lib
-Requires: kross-bin
-Provides: kross-devel
+Requires: kross-lib = %{version}-%{release}
+Requires: kross-bin = %{version}-%{release}
+Provides: kross-devel = %{version}-%{release}
 
 %description dev
 dev components for the kross package.
@@ -53,7 +53,7 @@ dev components for the kross package.
 %package lib
 Summary: lib components for the kross package.
 Group: Libraries
-Requires: kross-license
+Requires: kross-license = %{version}-%{release}
 
 %description lib
 lib components for the kross package.
@@ -84,25 +84,25 @@ man components for the kross package.
 
 
 %prep
-%setup -q -n kross-5.50.0
+%setup -q -n kross-5.51.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536431701
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1539701774
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536431701
+export SOURCE_DATE_EPOCH=1539701774
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kross
-cp COPYING.LIB %{buildroot}/usr/share/doc/kross/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kross
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kross/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -165,20 +165,20 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KrossCore.so.5
-/usr/lib64/libKF5KrossCore.so.5.50.0
+/usr/lib64/libKF5KrossCore.so.5.51.0
 /usr/lib64/libKF5KrossUi.so.5
-/usr/lib64/libKF5KrossUi.so.5.50.0
+/usr/lib64/libKF5KrossUi.so.5.51.0
 /usr/lib64/qt5/plugins/krossmoduleforms.so
 /usr/lib64/qt5/plugins/krossmodulekdetranslation.so
 /usr/lib64/qt5/plugins/krossqts.so
 /usr/lib64/qt5/plugins/script/krossqtsplugin.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kross/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kross/COPYING.LIB
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/ca/man1/kf5kross.1
 /usr/share/man/de/man1/kf5kross.1
 /usr/share/man/es/man1/kf5kross.1
