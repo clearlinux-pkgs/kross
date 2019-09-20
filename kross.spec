@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kross
-Version  : 5.61.0
-Release  : 10
-URL      : https://download.kde.org/stable/frameworks/5.61/portingAids/kross-5.61.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.61/portingAids/kross-5.61.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.61/portingAids/kross-5.61.0.tar.xz.sig
+Version  : 5.62.0
+Release  : 11
+URL      : https://download.kde.org/stable/frameworks/5.62/portingAids/kross-5.62.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.62/portingAids/kross-5.62.0.tar.xz
+Source1 : https://download.kde.org/stable/frameworks/5.62/portingAids/kross-5.62.0.tar.xz.sig
 Summary  : Multi-language application scripting
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -86,14 +86,14 @@ man components for the kross package.
 
 
 %prep
-%setup -q -n kross-5.61.0
+%setup -q -n kross-5.62.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1565616856
+export SOURCE_DATE_EPOCH=1568946553
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -106,11 +106,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1565616856
+export SOURCE_DATE_EPOCH=1568946553
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kross
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kross/COPYING.LIB
@@ -176,9 +176,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KrossCore.so.5
-/usr/lib64/libKF5KrossCore.so.5.61.0
+/usr/lib64/libKF5KrossCore.so.5.62.0
 /usr/lib64/libKF5KrossUi.so.5
-/usr/lib64/libKF5KrossUi.so.5.61.0
+/usr/lib64/libKF5KrossUi.so.5.62.0
 /usr/lib64/qt5/plugins/krossmoduleforms.so
 /usr/lib64/qt5/plugins/krossmodulekdetranslation.so
 /usr/lib64/qt5/plugins/krossqts.so
