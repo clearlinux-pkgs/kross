@@ -6,11 +6,11 @@
 #
 Name     : kross
 Version  : 5.62.0
-Release  : 11
+Release  : 12
 URL      : https://download.kde.org/stable/frameworks/5.62/portingAids/kross-5.62.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.62/portingAids/kross-5.62.0.tar.xz
 Source1 : https://download.kde.org/stable/frameworks/5.62/portingAids/kross-5.62.0.tar.xz.sig
-Summary  : Multi-language application scripting
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kross-bin = %{version}-%{release}
@@ -21,7 +21,7 @@ Requires: kross-man = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : qtbase-dev mesa-dev
-BuildRequires : qttools-staticdev
+BuildRequires : qttools-dev
 
 %description
 # Kross
@@ -45,7 +45,6 @@ Group: Development
 Requires: kross-lib = %{version}-%{release}
 Requires: kross-bin = %{version}-%{release}
 Provides: kross-devel = %{version}-%{release}
-Requires: kross = %{version}-%{release}
 Requires: kross = %{version}-%{release}
 
 %description dev
@@ -93,10 +92,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568946553
+export SOURCE_DATE_EPOCH=1569727664
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -110,7 +108,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1568946553
+export SOURCE_DATE_EPOCH=1569727664
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kross
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kross/COPYING.LIB
